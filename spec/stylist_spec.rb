@@ -6,7 +6,7 @@ describe('Stylist') do
       expect(Stylist.all()).to(eq([]))
     end
   end
-  
+
   describe('#==') do
     it('is the same stylist if they have the same name') do
       stylist1 = Stylist.new(:name => "John Smith", :phone =>'312-867-5309')
@@ -14,5 +14,14 @@ describe('Stylist') do
       expect(stylist1).to(eq(stylist2))
     end
   end
+
+  describe('#save') do
+    it('saves the stylist to an array of stylists') do
+      test_stylist = Stylist.new(:name => "John Smith", :phone =>'312-867-5309')
+      test_stylist.save()
+      expect(Stylist.all()).to(eq([test_stylist]))
+    end
+  end
+
 
 end
