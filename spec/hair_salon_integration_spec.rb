@@ -45,12 +45,3 @@ describe('view details for a stylist', {:type => :feature}) do
     expect(page).to have_content(client.name())
   end
 end
-
-describe("#update") do
-    it("lets you update stylists in the database") do
-      stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
-      stylist.save()
-      stylist.update({:name => "You Daman", :phone =>'982-090-1212', :id => nil})
-      expect(stylist.name()).to(eq("You Daman"))
-    end
-  end
