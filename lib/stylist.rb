@@ -2,8 +2,8 @@ class Stylist
   attr_reader(:name, :phone)
 
   define_method(:initialize) do |attributes|
-    @name = attributes.fetch('name')
-    @phone = attributes.fetch('phone')
+    @name = attributes.fetch(:name)
+    @phone = attributes.fetch(:phone)
   end
 
   define_singleton_method(:all) do
@@ -15,6 +15,10 @@ class Stylist
       stylists.push(Stylist.new({:name=> name, :phone => phone}))
     end
     stylists
+  end
+
+  define_method(:==) do |another_stylist|
+    self.name().==(another_stylist.name())
   end
 
 
