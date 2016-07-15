@@ -23,5 +23,12 @@ describe('Stylist') do
     end
   end
 
+  describe('#id') do
+    it ("sets the ID when you save it") do
+      test_stylist = Stylist.new(:name => "John Smith", :phone =>'312-867-5309', :id => nil)
+      test_stylist.save()
+      expect(test_stylist.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
 
 end

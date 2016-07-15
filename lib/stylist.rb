@@ -28,6 +28,6 @@ class Stylist
     @id = result.first().fetch('id').to_i()
   end
 
-
+  
 
 end
