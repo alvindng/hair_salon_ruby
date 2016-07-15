@@ -4,7 +4,7 @@ class Stylist
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
-    @id = attributes.fetch(:id)
+    @id = attributes.fetch(:id).to_i()
   end
 
   define_singleton_method(:all) do
@@ -28,6 +28,6 @@ class Stylist
     @id = result.first().fetch('id').to_i()
   end
 
-  
+
 
 end

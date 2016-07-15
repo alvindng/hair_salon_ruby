@@ -9,15 +9,22 @@ describe('Stylist') do
 
   describe('#==') do
     it('is the same stylist if they have the same name') do
-      stylist1 = Stylist.new(:name => "John Smith", :phone =>'312-867-5309', :id => nil)
-      stylist2 = Stylist.new(:name => "John Smith", :phone =>'312-867-5309', :id => nil)
+      stylist1 = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
+      stylist2 = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
       expect(stylist1).to(eq(stylist2))
+    end
+  end
+
+  describe('#name') do
+    it('tells you stylist name') do
+      stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
+      expect(stylist.name()).to(eq("John Smith"))
     end
   end
 
   describe('#save') do
     it('saves the stylist to an array of stylists') do
-      test_stylist = Stylist.new(:name => "John Smith", :phone =>'312-867-5309', :id => nil)
+      test_stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
       test_stylist.save()
       expect(Stylist.all()).to(eq([test_stylist]))
     end
@@ -25,7 +32,7 @@ describe('Stylist') do
 
   describe('#id') do
     it ("sets the ID when you save it") do
-      test_stylist = Stylist.new(:name => "John Smith", :phone =>'312-867-5309', :id => nil)
+      test_stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
       test_stylist.save()
       expect(test_stylist.id()).to(be_an_instance_of(Fixnum))
     end
