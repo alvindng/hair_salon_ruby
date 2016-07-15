@@ -2,10 +2,12 @@ require('client')
 require('stylist')
 require('rspec')
 require('pg')
-require('capybara/rspec')
-require('./app.rb')
 require('launchy')
 require('pry')
+require('capybara/rspec')
+require('./app')
+Capybara.app = Sinatra::Application
+set(:show_exceptions, false)
 
 DB = PG.connect({:dbname => 'hair_salon_test'})
 
