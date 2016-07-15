@@ -25,7 +25,8 @@ describe('adding clients to a stylist') do
   it('allows a user to add a client to a stylist') do
     stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
     stylist.save()
-    visit('/stylists/#{stylist.id}')
+    visit('/stylists')
+    click_link('John Smith')
     fill_in('client_name', {:with => 'Mary Jane'})
     fill_in('client_phone', {:with => '987-789-1011'})
     click_button("Add Client")
@@ -44,3 +45,12 @@ describe('view details for a stylist', {:type => :feature}) do
     expect(page).to have_content(client.name())
   end
 end
+
+describe("#update") do
+    it("lets you update stylists in the database") do
+      stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
+      stylist.save()
+      stylist.update({:name => "You Daman", :phone =>'982-090-1212', :id => nil})
+      expect(stylist.name()).to(eq("You Daman"))
+    end
+  end
