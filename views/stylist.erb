@@ -4,11 +4,22 @@
   <h3>Here are all their clients:</h3>
 
   <ul>
-  <% @stylist.client().each do |client|%>
-    <li><%=client.name()%></li>
+  <% @stylist.clients().each do |client|%>
+    <li>Name: <%=client.name()%>, Phone: <%=client.phone()%></li>
     <% end %>
   </ul>
 
 <% else %>
 <p><%= @stylist.name()%> does not have any clients!</p>
 <% end %>
+
+<h3>Add a client to <%= @stylist.name()%></h3>
+
+<form action="/stylists/<%= @stylist.id() %>"" method="post">
+  <input type="hidden" name="stylist_id" id="stylist_id" value="<%=@stylist.id() %>">
+  <label for="client_name">Client Name:</label>
+  <input type="text" name="client_name" id="client_name">
+  <label for="client_phone">Client Phone Number:</label>
+  <input type="text" name="client_phone" id="client_phone">
+  <button type="submit" name="button">Add Client</button>
+</form>

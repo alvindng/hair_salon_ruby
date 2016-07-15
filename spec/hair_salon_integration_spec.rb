@@ -4,8 +4,8 @@ describe('adding a new stylist', {:type => :feature}) do
   it('allows a user to click a stylist and see all their clients and details') do
     visit('/')
     click_link('Add New Stylist')
-    fill_in('name', :with => 'Margaret Thatcher')
-    fill_in('phone', :with => '909-808-7070')
+    fill_in('stylist_name', :with => 'Margaret Thatcher')
+    fill_in('stylist_phone', :with => '909-808-7070')
     click_button('Add Stylist')
     expect(page).to have_content('Margaret Thatcher')
   end
@@ -18,6 +18,18 @@ describe('viewing all of the stylists', {:type => :feature}) do
     visit('/')
     click_link('View All Stylists')
     expect(page).to have_content(stylist.name)
+  end
+end
+
+describe('adding clients to a stylist') do
+  it('allows a user to add a client to a stylist') do
+    stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
+    stylist.save()
+    visit('/stylists/#{stylist.id}')
+    fill_in('client_name', {:with => 'Mary Jane'})
+    fill_in('client_phone', {:with => '987-789-1011'})
+    click_button("Add Client")
+    expect(page).to have_content("Mary Jane")
   end
 end
 
