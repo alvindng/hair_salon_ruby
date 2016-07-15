@@ -11,4 +11,16 @@ attr_reader(:name, :phone, :stylist_id)
     self.name().==(another_client.name()).&(self.stylist_id().==(another_client.stylist_id()))
   end
 
+  define_singleton_method(:all) do 
+    clients = []
+    returned_clients = DB.exec("SELECT * FROM clients")
+    returned_clients.each() do |client|
+      name = client.fetch('name')
+      phone = client.fetch('phone')
+      stylist_id = client.fetch('stylist_id').to_i()
+      clients.push(Client.new({:name => name, :phone => phone, :stylist_id => stylist_id}))
+    end
+    clients
+  end
+
 end
