@@ -1,9 +1,9 @@
-<h1>Update the Stylist <%=@stylist.name() %> </h1>
+<h1>Update the Client <%=@client.name() %> </h1>
 
-<form action="/stylists/<%= @stylist.id() %>" method="post">
+<form action="/client/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
-  <label for="name">Rename your stylist:</label>
+  <label for="name">Rename your client:</label>
   <input id="name" name="name" type="text">
   <label for="phone">Update phone Number:</label>
   <input id="phone" name="phone" type="text">
@@ -11,10 +11,10 @@
   <button type="submit">Update</button>
 </form>
 
-<form action="/stylists/<%= @stylist.id() %>" method="post">
+<form action="/client/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
 
-  <button type="submit">Delete Stylist</button>
+  <button type="submit">Delete Client</button>
 </form>
 
 <p><a href="/">Return to Main Page</a></p>

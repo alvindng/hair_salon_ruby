@@ -1,0 +1,13 @@
+<h1>All Clients:</h1>
+
+<% if @clients.any?() %>
+  <ul>
+    <% @clients.each() do |client|%>
+    <li><a href="/clients/<%= client.id() %>">Name: <%=client.name()%>, Phone: <%=client.phone()%></a></li>
+    <% end %>
+  </ul>
+<% else %>
+<p>There are no clients for this salon</p>
+<% end %>
+
+<p><a href="/">Return to Main Page</a></p>
