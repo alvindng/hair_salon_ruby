@@ -47,3 +47,16 @@ post('/stylists/:id') do
   @stylists = Stylist.all()
   erb(:stylist)
 end
+
+get("/stylists/:id/edit") do
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  erb(:stylist_edit)
+end
+
+patch("/stylists/:id") do
+  name = params.fetch("name")
+  phone = params.fetch("phone")
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  @stylist.update({:name => name, :phone => phone})
+  erb(:stylist)
+end
