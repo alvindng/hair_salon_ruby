@@ -28,6 +28,25 @@ class Stylist
     @id = result.first().fetch('id').to_i()
   end
 
+  define_singleton_method(:find) do |id|
+    found_stylist = nil
+    Stylist.all().each() do |stylist|
+      if stylist.id.==(id)
+        found_stylist = stylist
+      end
+    end
+    found_stylist
+  end
 
-
+  define_method(:clients) do
+    found_clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id()};")
+    stylist_clients = []
+    found_clients.each() do |client|
+      name = client.fetch('name')
+      phone = client.fetch('phone')
+      stylist_id = client.fetch("stylist_id").to_i()
+      stylist_clients.push(Client.new({:name => name, :phone => phone, :stylist_id => stylist_id}))
+    end
+    stylist_clients
+  end
 end

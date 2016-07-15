@@ -29,3 +29,9 @@ get('/stylists') do
   @stylists = Stylist.all()
   erb(:stylists)
 end
+
+get('/stylists/:id') do
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  @clients = Clients.all()
+  erb(:stylist)
+end

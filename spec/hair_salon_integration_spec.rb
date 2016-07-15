@@ -20,3 +20,15 @@ describe('viewing all of the stylists', {:type => :feature}) do
     expect(page).to have_content(stylist.name)
   end
 end
+
+describe('view details for a stylist', {:type => :feature}) do
+  it('allows user to see the details of a stylist') do
+    stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
+    stylist.save()
+    client = Client.new({:name => "Mary Jane", :phone => "987-789-1011", :stylist_id => stylist.id()})
+    client.save()
+    visit('/stylists')
+    click_link(stylist.name())
+    expect(page).to have_content(client.name())
+  end
+end

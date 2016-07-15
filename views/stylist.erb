@@ -1,0 +1,14 @@
+<h1><%= @stylist.name()%></h1>
+
+<% if @stylist.clients().any?() %>
+  <h3>Here are all their clients:</h3>
+
+  <ul>
+  <% @stylist.client().each do |client|%>
+    <li><%=client.name()%></li>
+    <% end %>
+  </ul>
+
+<% else %>
+<p><%= @stylist.name()%> does not have any clients!</p>
+<% end %>
