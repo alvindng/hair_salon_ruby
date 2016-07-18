@@ -5,28 +5,28 @@ attr_reader(:name, :phone, :stylist_id, :id)
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
     @id = attributes[:id]
-    @stylist_id = attributes[:stylist_id].to_i()
+    @stylist_id = attributes[:stylist_id]
   end
 
   define_method(:==) do |another_client|
-    self.name().==(another_client.name()).&(self.stylist_id().==(another_client.stylist_id()))
+    self.name().==(another_client.name()).&(self.id().==(another_client.id()))
   end
 
   define_singleton_method(:all) do
     clients = []
-    returned_clients = DB.exec("SELECT * FROM clients")
+    returned_clients = DB.exec("SELECT * FROM clients;")
     returned_clients.each() do |client|
       name = client.fetch('name')
       phone = client.fetch('phone')
       stylist_id = client.fetch('stylist_id').to_i()
       id = client.fetch('id').to_i()
-      clients.push(Client.new({:name => name, :phone => phone, :stylist_id => stylist_id}))
+      clients.push(Client.new({:id => id, :name => name, :phone => phone, :stylist_id => stylist_id}))
     end
     clients
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO clients (name, phone, stylist_id) VALUES ('#{@name}', '#{@phone}', #{@stylist_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO clients (name, phone, stylist_id) VALUES ('#{@name}', '#{@phone}', #{@stylist_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
@@ -41,13 +41,14 @@ attr_reader(:name, :phone, :stylist_id, :id)
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM clients WHERE id = #{self.id()}")
+    DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
   end
 
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
+    @stylist_id = attributes.fetch(:stylist_id)
     @id = self.id()
-    DB.exec("UPDATE stylists SET (name,phone) = ('#{@name}','#{@phone}') WHERE id = #{@id};")
+    DB.exec("UPDATE clients SET name = '#{@name}', phone = '#{@phone}', stylist_id = #{@stylist_id} WHERE id = #{@id};")
   end
 end

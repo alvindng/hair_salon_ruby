@@ -1,5 +1,27 @@
 <h1><%= @client.name()%></h1>
+<h2> Their stylist is: <%= @stylist.name()%></h2>
 
-<p><a href="/stylists">View All Stylists</a></p>
-<p><a href="/stylists/<%= @stylist.id() %>/edit">Edit stylist</a></p>
+<h3>Update the Client <%=@client.name() %> </h3>
+<form action="/clients/<%= @client.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="new_client_name">Rename your client:</label>
+  <input id="new_client_name" name="new_client_name" type="text">
+  <label for="client_phone">Update phone Number:</label>
+  <input id="new_client_phone" name="new_client_phone" type="text">
+  <label for="new_stylist_id">Select a Stylist</label>
+    <select id='new_stylist_id' name='new_stylist_id' type='text'>
+      <% @stylists.each() do |stylist| %>
+        <option value="<%= stylist.id()%>"> <%= stylist.name() %></option>
+      <% end %>
+    </select>
+  <button type="submit">Update</button>
+</form>
+
+<h3>Delete the Client <%=@client.name() %> </h3>
+<form action="/clients/<%= @client.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete Client</button>
+</form>
+
 <p><a href="/">Return to Main Page</a></p>
+<p><a href="/stylists">View All Stylists</a></p>

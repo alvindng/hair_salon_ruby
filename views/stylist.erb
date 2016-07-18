@@ -5,7 +5,7 @@
 
   <ul>
   <% @stylist.clients().each do |client|%>
-    <li>Name: <%=client.name()%>, Phone: <%=client.phone()%></li>
+    <li>Name: <a href="/clients/<%=client.id()%>"><%=client.name()%>,</a> Phone: <%=client.phone()%></li>
     <% end %>
   </ul>
 
@@ -15,15 +15,32 @@
 
 <h3>Add a client to <%= @stylist.name()%></h3>
 
-<form action="/stylists/<%= @stylist.id() %>"" method="post">
-  <input type="hidden" name="stylist_id" id="stylist_id" value="<%=@stylist.id() %>">
-  <label for="client_name">Client Name:</label>
-  <input type="text" name="client_name" id="client_name">
-  <label for="client_phone">Client Phone Number:</label>
-  <input type="text" name="client_phone" id="client_phone">
+<form action="/stylists/<%= @stylist.id() %>" method="post">
+  <input type="hidden" name= "stylist_id" id="stylist_id" value="<%= @stylist.id() %>">
+  <label for="stylist_client_name">Client Name:</label>
+  <input type="text" name="stylist_client_name" id="stylist_client_name">
+  <label for="stylist_client_phone">Client Phone Number:</label>
+  <input type="text" name="stylist_client_phone" id="stylist_client_phone">
   <button type="submit" name="button">Add Client</button>
 </form>
 
+<h3>Update the Stylist <%=@stylist.name() %> </h3>
+
+<form action="/stylists/<%= @stylist.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="new_stylist_name">Rename your stylist:</label>
+  <input id="new_stylist_name" name="new_stylist_name" type="text">
+  <label for="new_stylist_phone">Update phone Number:</label>
+  <input id="new_stylist_phone" name="new_stylist_phone" type="text">
+  <button type="submit">Update</button>
+</form>
+
+<form action="/stylists/<%= @stylist.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete Stylist</button>
+</form>
+
+<p><a href="/">Return to Main Page</a></p>
 <p><a href="/stylists">View All Stylists</a></p>
 <p><a href="/stylists/<%= @stylist.id() %>/edit">Edit stylist</a></p>
-<p><a href="/">Return to Main Page</a></p>

@@ -10,4 +10,20 @@
 <p>There are no stylists for this salon</p>
 <% end %>
 
+<h3>Add a Stylist to your Salon:</h3>
+
+<form action="/stylists" method="post">
+  <label for="stylist_name">Name:</label>
+  <input type="text" name="stylist_name" id="stylist_name">
+  <label for="stylist_phone">Phone Number:</label>
+  <input type="text" name="stylist_phone" id="stylist_phone">
+  <button type="submit" name="button">Add Stylist</button>
+</form>
+
+<% if @stylists.any?() %>
+  <a href="/clients">View All clients</a>
+  <br>
+<% end %>
+
+<p><a href="/stylists">View All Stylists</a></p>
 <p><a href="/">Return to Main Page</a></p>

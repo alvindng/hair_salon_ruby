@@ -10,4 +10,24 @@
 <p>There are no clients for this salon</p>
 <% end %>
 
+<h3>Add a Client to your Salon:</h3>
+
+<form action="/clients" method="post">
+  <label for="client_name">Name:</label>
+  <input type="text" name="client_name" id="client_name">
+  <label for="client_phone">Phone Number:</label>
+  <input type="text" name="client_phone" id="client_phone">
+  <label for="stylist_id">Assign their stylist:</label>
+  <select id="stylist_id" name="stylist_id" type='text'>
+    <% @stylists.each() do |stylist| %>
+      <option value="<%= stylist.id()%>"><%=stylist.name()%></option>
+    <% end %>
+  </select>
+  <button type="submit" name="button">Add Client</button>
+</form>
+
+<% if @stylists.any?() %>
+  <a href="/clients">View All clients</a>
+  <br>
+<% end %>
 <p><a href="/">Return to Main Page</a></p>
