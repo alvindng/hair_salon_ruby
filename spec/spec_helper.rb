@@ -4,10 +4,6 @@ require('rspec')
 require('pg')
 require('launchy')
 require('pry')
-require('capybara/rspec')
-require('./app')
-Capybara.app = Sinatra::Application
-set(:show_exceptions, false)
 
 DB = PG.connect({:dbname => 'hair_salon_test'})
 

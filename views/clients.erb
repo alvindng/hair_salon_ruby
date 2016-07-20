@@ -1,6 +1,6 @@
 <h1>All Clients:</h1>
 
-<% if @clients.any?() %>
+<% if @stylists.any?() %>
   <ul>
     <% @clients.each() do |client|%>
     <li><a href="/clients/<%= client.id() %>">Name: <%=client.name()%>, Phone: <%=client.phone()%></a></li>

@@ -34,8 +34,7 @@ describe('Client') do
 
   describe('#save') do
     it('saves the client to an array of clients') do
-      stylist = Stylist.new({:name => "John Smith", :phone =>'312-867-5309', :id => nil})
-      client = Client.new({:name => "Mary Jane", :phone => "987-789-1011", :stylist_id => stylist.id(), :id=> nil})
+      client = Client.new({:name => "Mary Jane", :phone => "987-789-1011", :stylist_id => 1, :id=> nil})
       client.save()
       expect(Client.all()).to(eq([client]))
     end

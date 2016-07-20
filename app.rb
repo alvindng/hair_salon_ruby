@@ -6,7 +6,7 @@ require('./lib/stylist')
 require('pg')
 require('pry')
 
-DB = PG.connect({:dbname => 'hair_salon'})
+DB = PG.connect({:dbname => 'hair_salon_test'})
 
 get('/') do
   @stylists = Stylist.all()
@@ -84,9 +84,9 @@ end
 
 get('/clients/:id') do
   @clients = Client.all()
-  @stylists = Stylist.all()
   @client = Client.find(params.fetch("id").to_i())
   @stylist= Stylist.find(@client.stylist_id())
+  @stylists = Stylist.all()
   erb(:client)
 end
 
