@@ -113,5 +113,6 @@ describe('deleting a client', {:type => :feature}) do
     visit('/clients')
     click_link('Mary Jane')
     click_button('Delete Client')
+    expect(page).to have_content("All Clients")
   end
 end

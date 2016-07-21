@@ -47,7 +47,6 @@ attr_reader(:name, :phone, :stylist_id, :id)
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
-    @stylist_id = attributes.fetch(:stylist_id)
     @id = self.id()
     DB.exec("UPDATE clients SET name = '#{@name}', phone = '#{@phone}', stylist_id = #{@stylist_id} WHERE id = #{@id};")
   end

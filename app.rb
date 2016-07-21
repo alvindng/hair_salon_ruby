@@ -107,5 +107,5 @@ delete('/clients/:id') do
   @client.delete()
   @clients = Client.all()
   @stylists = Stylist.all()
-  erb(:client)
+  erb(:clients)
 end
